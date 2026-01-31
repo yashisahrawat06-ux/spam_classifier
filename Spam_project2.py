@@ -86,10 +86,11 @@ with col2:
     file=st.file_uploader("select file containing bulk msgs",type=['txt','csv'])
     
     if file!=None:
-        df=pd.read_csv(file.name,header=None,names=["Msg"])
+        df=pd.read_csv(file,header=None,names=["Msg"])
         place=st.empty()
         place.dataframe(df)
         if st.button("Predict",key="b2"):
             result=model.predict(df.Msg)
             df['result']=model.predict(df.Msg)
             place.dataframe(df)
+
